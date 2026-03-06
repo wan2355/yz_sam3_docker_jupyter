@@ -1,0 +1,39 @@
+# secrets
+.env
+*.env
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+
+# jupyter
+.jupyter/
+*.ipynb~
+
+# huggingface / model cache
+hf_cache/
+.cache/
+weights/
+checkpoints/
+models/
+
+# local work/output
+outputs/
+results/
+logs/
+tmp/
+data/
+
+# docker
+*.tar
+
+# editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

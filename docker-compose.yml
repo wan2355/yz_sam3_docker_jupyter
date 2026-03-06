@@ -1,0 +1,73 @@
+## 260306 release.
+services:
+  sam3:
+    image: sam3:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - HTTP_PROXY=${HTTP_PROXY}
+        - http_proxy=${http_proxy}
+        - HTTPS_PROXY=${HTTPS_PROXY}
+        - https_proxy=${https_proxy}
+        - NO_PROXY=${NO_PROXY}
+        - no_proxy=${no_proxy}
+
+    container_name: sam3
+    tty: true
+    shm_size: "8g"
+
+    # Compose v2+ standard GPU flag (more reliable than deploy.* outside Swarm)
+    gpus: all
+
+    ports:
+      - "8888:8888"
+
+    environment:
+      ## Hugging Face token (for downloading gated checkpoints at runtime)
+      ##  set HF_TOKEN=your_token & export "$HF_TOKEN" from your sehll is best.
+      #- HF_TOKEN=${HF_TOKEN}
+      ## HF cache locations (match Dockerfile ENV)
+      - HF_HOME=/opt/hf
+      #- TRANSFORMERS_CACHE=/opt/hf/transformers
+      #- HF_HUB_CACHE=/opt/hf/hub
+      #
+      # proxies, if you need
+      - HTTP_PROXY=${HTTP_PROXY}
+      - http_proxy=${http_proxy}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - https_proxy=${https_proxy}
+      - NO_PROXY=${NO_PROXY}
+      - no_proxy=${no_proxy}
+    #
+    working_dir: /opt/sam3/
+    #
+    volumes:
+      ## Mount current directory as /work (matches WORKDIR)
+      - ${PWD}:/opt/sam3/my_data
+      ## share my jupyter script with docker.
+      - ${PWD}/jpy:/opt/sam3/my_data/jpy
+      ## share pretrained & models with docker
+      - $HOME/.cache/huggingface:/opt/hf
+
+    #command: bash
+    command: >
+      bash -lc ". /opt/conda/etc/profile.d/conda.sh &&
+            conda activate sam3 &&
+            exec jupyter lab  --allow-root --ip=0.0.0.0 --port=8888
+            --no-browser
+            --notebook-dir=/opt/sam3/"
+
+##------ ref ---------------------------
+## dir-structure 
+# /opt/conda
+# ├── bin
+# ├── envs
+# │   └── sam3
+# └── pkgs
+
+## PATH
+# /opt/conda/envs/sam3/bin/python
+# /opt/conda/envs/sam3/bin/pip
+# /opt/conda/envs/sam3/bin/jupyter
+# 
