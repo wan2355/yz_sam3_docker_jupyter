@@ -6,7 +6,7 @@ English | [日本語](README.ja.md)
 [![CUDA](https://img.shields.io/badge/CUDA-supported-green)]()
 [![License](https://img.shields.io/badge/license-MIT-yellow)]()
 
-Run **SAM3** using **Docker + Conda + JupyterLab + GPU.
+Run **SAM3** using **Docker + Conda + JupyterLab + GPU**.
 
 ------------------------------------------------------------------------
 
