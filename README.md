@@ -6,23 +6,19 @@ English | [日本語](README.ja.md)
 [![CUDA](https://img.shields.io/badge/CUDA-supported-green)]()
 [![License](https://img.shields.io/badge/license-MIT-yellow)]()
 
-Run **SAM3** in a clean and reproducible environment using **Docker +
-Conda + JupyterLab + GPU**.
-
-This repository provides a ready‑to‑run environment for experimenting
-with **SAM3 models** without fighting Python dependencies.
+Run **SAM3** using **Docker + Conda + JupyterLab + GPU.
 
 ------------------------------------------------------------------------
 
 # Features
 
--   Docker based reproducible environment
 -   CUDA / GPU support
 -   Conda environment (`sam3`)
 -   JupyterLab included
 -   Hugging Face cache sharing
--   Optional proxy support
 -   Makefile workflow
+-   Optional proxy support
+-   create environment by manjaro linux
 
 ------------------------------------------------------------------------
 
@@ -30,6 +26,7 @@ with **SAM3 models** without fighting Python dependencies.
 
 Before running this project install:
 
+-   Linux
 -   Docker
 -   Docker Compose v2
 -   NVIDIA Container Toolkit
@@ -37,8 +34,9 @@ Before running this project install:
 -   GNU Make (recommended)
 
 Check GPU support:
-
+```
     docker run --rm --gpus all nvidia/cuda:12.1.1-base-ubuntu22.04 nvidia-smi
+```
 
 ------------------------------------------------------------------------
 
