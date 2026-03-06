@@ -106,7 +106,7 @@ ENV TRANSFORMERS_CACHE=/opt/hf/transformers
 ENV HF_HUB_CACHE=/opt/hf/hub
 
 ## ---- Your dotfiles / settings (optional) ----
-## If you don't have these, comment them out.
+## If you have these, comment them out.
 ## NOTE:
 ##  - These COPY steps will fail if the paths don't exist in the build context.
 #WORKDIR /root
